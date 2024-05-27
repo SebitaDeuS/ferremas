@@ -30,7 +30,6 @@ class Inventario(models.Model):
     stock_sucursal = models.IntegerField()
     sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE)
 
-  
 
 class TipoProducto(models.Model):
     id_tp_producto = models.AutoField(primary_key=True)
@@ -103,15 +102,16 @@ class Producto(models.Model):
             self.save()
     
     def __str__(self):
-        return self.nomb_producto
+        return str(self.id_producto) + self.nomb_producto
 
 class HistorialPrecio(models.Model):
     id_historial = models.AutoField(primary_key=True)
     precio_antiguo = models.DecimalField(max_digits=10, decimal_places=2)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
 
+    
     def __str__(self):
-        return self.precio_antiguo
+        return str(self.precio_antiguo)
 
 class Promocion(models.Model):
     codigo_promocion = models.AutoField(primary_key=True)
@@ -120,6 +120,7 @@ class Promocion(models.Model):
     fecha_termino = models.DateField()
     productos = models.ManyToManyField(Producto)
     descuento_porcentaje = models.IntegerField(default=0)
+    estado = models.CharField(max_length=50, default='activo')
 
     def __str__(self):
         return self.nombre_promocion
@@ -142,4 +143,3 @@ class ChatConsulta(models.Model):
     mensaje = models.TextField()
     respuesta = models.TextField(blank=True, null=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    

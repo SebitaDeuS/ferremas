@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from appModelosDB.models import Producto, Promocion
+from appModelosDB.models import Producto, Promocion, HistorialPrecio
 
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,4 +12,10 @@ class PromocionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Promocion
+        fields = '__all__'
+
+
+class HistorialPrecioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HistorialPrecio
         fields = '__all__'
