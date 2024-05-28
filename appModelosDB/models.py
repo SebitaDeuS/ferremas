@@ -143,3 +143,10 @@ class ChatConsulta(models.Model):
     mensaje = models.TextField()
     respuesta = models.TextField(blank=True, null=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self): 
+        return f"Consulta #{self.id_consulta}: {self.asunto}"
+    
+
+
+

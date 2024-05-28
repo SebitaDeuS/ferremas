@@ -22,16 +22,16 @@ from drf_yasg.views import get_schema_view
 from categorias.api.router import router_categorias
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="ferremas-api",
-      default_version='v1',
-      description="Documentacion de la api de ferremas",
-      terms_of_service="",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   #permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="ferremas-api",
+        default_version='v1',
+        description="Documentacion de la api de ferremas",
+        terms_of_service="",
+        contact=openapi.Contact(email="contact@snippets.local"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    #permission_classes=(permissions.AllowAny,),
 )
 
 
@@ -43,6 +43,7 @@ urlpatterns = [
     path('redocs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('api/', include('users.api.router')),
     path('', include('producto.api.router')),
-    path('api/', include(router_categorias.urls))
+    path('api/', include(router_categorias.urls)),
+    path('api/', include('chatbox.api.router')),
 
 ]
